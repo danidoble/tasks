@@ -16,7 +16,7 @@ use \App\Http\Controllers;
 Route::get('/', [Controllers\ProjectController::class,'index'])->name('dashboard');
 Route::get('/dashboard', [Controllers\ProjectController::class,'index'])->name('dashboard');
 
-Route::get('/projects/show/{id}', [Controllers\ProjectController::class,'show'])->name('projects.show');
+Route::get('/projects/show/{project}', [Controllers\ProjectController::class,'show'])->name('projects.show');
 
 /*Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

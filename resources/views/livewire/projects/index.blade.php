@@ -1,5 +1,5 @@
 <div>
-    <div class="relative pt-0 pb-4 px-4 sm:px-6 lg:pt-0 lg:pb-4 lg:px-8">
+    <div class="relative pt-0 pb-4 lg:pt-0 lg:pb-4 ">
         <div class="absolute inset-0">
             <div class=" h-1/3 sm:h-2/3"></div>
         </div>
@@ -21,7 +21,7 @@
                             </button>
                         </div>
                         @endif
-                        <a href="{{ route('projects.show',['id'=>$project->id]) }}" class="flex-1 bg-white p-6 flex flex-col justify-between">
+                        <a href="{{ route('projects.show',['project'=>$project->id]) }}" class="flex-1 bg-white p-6 flex flex-col justify-between">
                             <div class="flex-1">
                                 <p class="text-sm font-medium text-indigo-600">
                                     <span class="text-xl font-semibold text-gray-900">

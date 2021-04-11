@@ -19,8 +19,8 @@ class CreateTasksTable extends Migration
             $table->foreignId('project_id');
             $table->string('name');
             $table->longText('description')->nullable();
-            $table->longText('limit_date')->nullable();
-            $table->longText('priority')->nullable();
+            $table->timestamp('limit_date')->nullable();
+            $table->tinyInteger('priority')->nullable();
             $table->timestamp('completed_at')->nullable();
             $table->foreignId('completed_by')->nullable();
             $table->foreignId('updated_by')->nullable();

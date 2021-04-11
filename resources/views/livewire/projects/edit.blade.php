@@ -2,7 +2,7 @@
     <button class="" id="editableNowRender" wire:click="reload(document.getElementById('reloadEditPanel').value)"></button>
     @if(!empty($project))
         <section @keydown.window.escape="open_editor = false;"
-             x-init="$watch(&quot;open_editor&quot;, o => !o &amp;&amp;"
+             x-init="open_editor=true"
              x-show="open_editor" class="fixed inset-0 overflow-hidden"
              aria-labelledby="slide-over-title"
              x-ref="dialog" role="dialog" aria-modal="true">
@@ -76,6 +76,7 @@
                                                                               class="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md">{{ $project->description }}</textarea>
                                             </div>
                                         </div>
+                                        {{--
                                         <div>
                                             <h3 class="text-sm font-medium text-gray-900">
                                                 {{ __('Shared with') }}
@@ -112,12 +113,18 @@
                                                 </div>
                                             </div>
                                         </div>
-
+                                        --}}
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="flex-shrink-0 px-4 py-4 flex justify-end">
+
+                            <button class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                     wire:click="complete(document.getElementById('reloadEditPanel').value)" x-on:click="open_editor = false;document.getElementById('searchNowRender').click();document.getElementById('editableNowRender').click();">Completado</button>
+
+                            <button class="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                     wire:click="delete(document.getElementById('reloadEditPanel').value)" x-on:click="open_editor = false;document.getElementById('searchNowRender').click();document.getElementById('editableNowRender').click();">Eliminar</button>
 
                             <button type="button"
                                     x-on:click="open_editor = false;document.getElementById('searchNowRender').click();document.getElementById('editableNowRender').click();"

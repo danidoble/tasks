@@ -16,7 +16,8 @@ class Index extends Component
     public function render()
     {
         $shared_with = Shared::where('user_id',Auth::user()->getAuthIdentifier())->get(['project_id']);
-        $projects = Project::where(function($query) use ($shared_with){
+        $projects = Project::whereNull('completed_at')
+            ->where(function($query) use ($shared_with){
             $query->where('user_id',Auth::user()->getAuthIdentifier())
                 ->orwherein('id',$shared_with);
         })

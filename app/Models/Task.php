@@ -17,8 +17,12 @@ class Task extends Model
      */
     protected $fillable = [
         'name',
-        'email',
-        'password',
+        'description',
+        'user_id',
+        'project_id',
+        'updated_by',
+        'priority',
+        'limit_date',
     ];
 
     /**
@@ -27,8 +31,7 @@ class Task extends Model
      * @var array
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+
     ];
 
     /**
@@ -37,6 +40,14 @@ class Task extends Model
      * @var array
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'completed_at' => 'datetime',
     ];
+
+
+    public function User(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
+
 }

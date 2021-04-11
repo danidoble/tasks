@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Shared;
+use App\Models\Task;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -46,7 +49,24 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        $show = false;
+        if(intval($project->user_id) !== intval(Auth::user()->getAuthIdentifier())){
+            $shared = Shared::where('user_id',Auth::user()->getAuthIdentifier())
+                ->where('project_id',$project->id)->first();
+            if(!empty($shared)){
+                $show=true;
+            }
+        }else{
+            $show=true;
+        }
+
+        if($show===true){
+            return view('projects.show',[
+                "project"=>$project,
+            ]);
+        }else{
+            abort(404);
+        }
     }
 
     /**
