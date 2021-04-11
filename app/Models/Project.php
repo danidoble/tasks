@@ -46,6 +46,12 @@ class Project extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
 
+    public function lastUserUpdate(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class,'updated_by','id');
+    }
+
+
     public function SharedWith(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Shared::class,'project_id','id');

@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class AuxController extends Controller
 {
-    public static function diffForHumans($date) {
+    public static function diffForHumans($date): string
+    {
         $dia = explode("-", $date, 3);
         $year = $dia[0];
         $month = (string)(int)$dia[1];
@@ -19,7 +20,8 @@ class AuxController extends Controller
 
         return $tomadia.", ".$day." de ".$meses[$month]." de ".$year;
     }
-    public static function dateFormats($date=null,$sum=false,$res=false,$num=0){
+    public static function dateFormats($date=null,$sum=false,$res=false,$num=0): object
+    {
         $time=[];
         if($date === null){
             $date=date('Y-m-d H:i:s');
@@ -48,5 +50,15 @@ class AuxController extends Controller
         ];
 
         return (object) $time;
+    }
+
+    public static function deniedApi(): array
+    {
+        return [
+            'error'=>true,
+            'errors'=>[
+                'token'=>"Your api token doesn't have permissions to open this route",
+            ],
+        ];
     }
 }

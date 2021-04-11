@@ -40,10 +40,25 @@ class JetstreamServiceProvider extends ServiceProvider
         Jetstream::defaultApiTokenPermissions(['read']);
 
         Jetstream::permissions([
-            'create',
-            'read',
-            'update',
-            'delete',
+            'projects:read',
+            'projects:create',
+            'projects:update',
+            'projects:delete',
+
+            'tasks:read',
+            'tasks:create',
+            'tasks:update',
+            'tasks:delete',
+
+            'shared-projects:read',
+            'shared-projects:create',
+            'shared-projects:update',
+            'shared-projects:delete',
+
+            'shared-tasks:read',
+            'shared-tasks:create',
+            'shared-tasks:update',
+            'shared-tasks:delete',
         ]);
     }
 }
