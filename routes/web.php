@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use \App\Http\Controllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [Controllers\ProjectController::class,'index'])->name('dashboard');
+Route::get('/dashboard', [Controllers\ProjectController::class,'index'])->name('dashboard');
 
-Route::get('/dashboard', function () {
+Route::get('/projects/show/{id}', [Controllers\ProjectController::class,'show'])->name('projects.show');
+
+/*Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
-require __DIR__.'/auth.php';
+})->name('dashboard');*/
